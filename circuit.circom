@@ -1,33 +1,52 @@
 pragma circom 2.0.0;
 
-include "../../node_modules/circomlib/circuits/gates.circom";
+/*This circuit template checks that c is the multiplication of a and b.*/  
 
-template MyCircuit() {
- signal input A;
-    signal input B;
-    signal X;
-    signal Y;
-    signal output Q;
+template Multiplier2 () {  
 
-  // Define the AND gate
-  X <== A * B;
+    signal input a;
+    signal input b;
+    signal x;
+    signal y;
+    signal output q;
 
-  // Define the XOR gate (simulating NOT)
-  Y <== A + B -  2 * X;
+    component andGate = AND();
+    component notGate = NOT();
+    component orGate = OR();
 
-  // Define the OR gate
-  Q <== X * Y;
+    andGate.a <== a;
+    andGate.b <== b;
+    x <== andGate.out;
 
-log("Output Q = ", Q);
+    notGate.in <== b;
+    y <== notGate.out;
+
+    orGate.a <== x;
+    orGate.b <== y;
+    q <== orGate.out;
 
 }
 
-component main = MyCircuit();
+template AND() {
+    signal input a;
+    signal input b;
+    signal output out;
 
+    out <== a*b;
+}
 
+template NOT() {
+    signal input in;
+    signal output out;
 
+    out <== 1 + in - 2*in;
+}
 
-/* INPUT = {
-    "A": 0,
-    "B": 1
-} */
+template OR() {
+    signal input a;
+    signal input b;
+    signal output out;
+
+    out <== a + b - a*b;
+}
+component main = Multiplier2();
