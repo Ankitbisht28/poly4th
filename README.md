@@ -1,16 +1,15 @@
 # MyCircuit
 
-This is a Circom circuit template written in version 2.0.0 of Circom. The circuit includes components for AND, XOR (simulating NOT), and OR gates. The main purpose of this template is to perform logic operations on two input signals, A and B, and produce an output signal, Q.
+This is a Circom circuit template written in version 2.0.0 of Circom. The circuit includes components for AND, NOT, and OR gates. The main purpose of this template is to perform logic operations on two input signals, a and b, and produce an output signal, q.
 
 ## Circuit Components
-
-- AND Gate: The AND gate takes input signals A and B and produces an output signal, X, representing the logical AND of A and B.
-- XOR Gate (Simulating NOT): The XOR gate takes input signals A and B and produces an output signal, Y, which simulates the logical NOT operation on A and B.
-- OR Gate: The OR gate takes input signals X and Y and produces the final output signal, Q, representing the logical OR of X and Y.
+- AND Gate: The AND gate takes input signals a and b and produces an output signal, x, representing the logical AND of a and b.
+- NOT Gate: The NOT gate takes input signals a and b and produces an output signal, y, which simulates the logical NOT operation on a and b.
+- OR Gate: The OR gate takes input signals X and Y and produces the final output signal, q, representing the logical OR of x and y.
 
 ## Usage
 
-To use this circuit template, provide input values for signals A and B. The circuit will then calculate the values of signals X, Y, and Q based on the defined logic operations. The output value of Q will be logged for reference.
+To use this circuit template, provide input values for signals a and b. The circuit will then calculate the values of signals x, y, and q based on the defined logic operations. The output value of q will be logged for reference.
 
 ## Example Input
 
@@ -18,8 +17,8 @@ The example input provided for this circuit is:
 
 ```json
 {
-    "A": 0,
-    "B": 1
+    "a": 0,
+    "b": 1
 }
 ```
 
@@ -28,10 +27,10 @@ The example input provided for this circuit is:
 To install the necessary dependencies, run `npm i` in your project directory.
 
 ### Compilation
-Compile the project by running `npx hardhat compile`. This will generate the `out` directory containing circuit intermediaries and the `MultiplierVerifier.sol` contract.
+Compile the project by running `npx hardhat circom`. This will generate the `out` directory containing circuit intermediaries and the `MultiplierVerifier.sol` contract.
 
 ### Proof Generation and Deployment
-Use the command `npx hardhat run scripts/deploy.ts` to execute the deployment script. This script performs the following tasks:
+Use the command `npx hardhat run scripts/deploy.ts --network mumbai` to execute the deployment script. This script performs the following tasks:
 
 1. Deploys the `MultiplierVerifier.sol` contract on the blockchain.
 2. Generates a proof using circuit intermediaries with the `generateProof()` function.
@@ -48,7 +47,7 @@ To successfully compile and verify the correctness of the circuit, follow these 
 
 2. Compile the circuit to generate circuit intermediaries using the Circom compiler. This will produce files necessary for proof generation and verification.
 
-3. Generate a proof using the input values `A=0` and `B=1`. The proof will demonstrate the correctness of the circuit for these specific inputs.
+3. Generate a proof using the input values `a=0` and `b=1`. The proof will demonstrate the correctness of the circuit for these specific inputs.
 
 4. Deploy the Verifier contract that provides the `verifyProof()` method. This contract will verify the generated proof against the circuit.
 
