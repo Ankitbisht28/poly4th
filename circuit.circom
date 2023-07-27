@@ -25,6 +25,11 @@ template Multiplier2 () {
     orGate.b <== y;
     q <== orGate.out;
 
+     // Logging outputs for verification
+    log("a", a);
+    log("b", b);
+    log("q", q);
+
 }
 
 template AND() {
